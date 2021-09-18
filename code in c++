@@ -1,0 +1,68 @@
+#include <iostream>
+#include <queue>
+#include<string>
+
+using namespace std;
+struct node
+{
+    int data;
+    struct node *lchild;
+    struct node *rchild;
+
+}*root=NULL;
+void create()
+{
+    int x,y;
+    struct node *p,*t;
+    queue<node*>q;
+    root=new node;
+    cout<<"entre root value"<<endl;
+    cin>>x;
+    root->data=x;
+    root->lchild=root->rchild=NULL;
+    q.push(root);
+    while(!q.empty())
+    {
+       p=q.front();
+       q.pop();
+       t=new node;
+       cout<<"entre the left child"<<" "<<p->data<<endl;
+       cin>>x;
+       if(x!=-1)
+       {
+       t->data= x;
+       t->lchild=t->rchild=NULL;
+       p->lchild=t;
+       q.push(t);
+       }
+       t=new node;
+       cout<<"entre the right child"<<" "<<p->data<<endl;
+       cin>>x;
+       if(x!=-1)
+       {
+       t->data= x;
+       t->lchild=t->rchild=NULL;
+       p->rchild=t;
+       q.push(t);
+       }
+    }
+}
+cout<<endl;
+preoder(struct node *p)
+{
+    if(p!=NULL)
+    {
+       cout<<p->data<<endl;
+       preoder(p->lchild);
+       preoder(p->rchild);
+    }
+}
+
+
+
+
+int main()
+{
+  create();
+  preoder(root);
+}
